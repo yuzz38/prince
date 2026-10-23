@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://prince-krsk.ru/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://prince-krsk.ru/img/hall.jpg</image:loc><image:title>Зал детской парикмахерской «Маленький принц»</image:title></image:image>
+    <image:image><image:loc>https://prince-krsk.ru/img/chairs-cars.jpg</image:loc><image:title>Кресла-машинки для детской стрижки</image:title></image:image>
+    <image:image><image:loc>https://prince-krsk.ru/img/pierce-room.jpg</image:loc><image:title>Комната прокола ушей</image:title></image:image>
+    <image:image><image:loc>https://prince-krsk.ru/img/team.jpg</image:loc><image:title>Команда «Маленького принца»</image:title></image:image>
+  </url>
+</urlset>
