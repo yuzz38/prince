@@ -177,4 +177,28 @@
 
   /* ---------- year ---------- */
   var y = d.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+  /* Окно мастера и галерея */
+  var masterDialog = d.getElementById('master-dialog');
+  var galleryTrack = d.getElementById('master-gallery-track');
+  var galleryCounter = d.getElementById('master-counter');
+  var galleryIndex = 0;
+  var galleryTotal = galleryTrack.children.length;
+  function showMasterSlide(index) {
+    galleryIndex = (index + galleryTotal) % galleryTotal;
+    galleryTrack.style.transform = 'translateX(-' + (galleryIndex * 100) + '%)';
+    galleryCounter.textContent = (galleryIndex + 1) + ' / ' + galleryTotal;
+  }
+  d.querySelectorAll('.master-card').forEach(function (button) {
+    button.addEventListener('click', function () {
+      d.getElementById('master-name').textContent = button.dataset.name;
+      d.getElementById('master-role').textContent = button.dataset.role;
+      d.getElementById('master-book').href = button.dataset.book;
+      showMasterSlide(0);
+      masterDialog.showModal();
+    });
+  });
+  d.getElementById('master-prev').addEventListener('click', function () { showMasterSlide(galleryIndex - 1); });
+  d.getElementById('master-next').addEventListener('click', function () { showMasterSlide(galleryIndex + 1); });
+  masterDialog.querySelector('.profile-dialog__close').addEventListener('click', function () { masterDialog.close(); });
+  masterDialog.addEventListener('click', function (event) { if (event.target === masterDialog) masterDialog.close(); });
 })();

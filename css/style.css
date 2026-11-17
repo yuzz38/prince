@@ -467,3 +467,56 @@ body.is-locked{overflow:hidden;touch-action:none}
 /* ---------- reveal ---------- */
 .js .rv-in{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
 .js .rv-in.is-in{opacity:1;transform:none}
+
+/* Карточки мастеров и дополнительные способы связи */
+.masters li{display:block;padding:0;overflow:hidden}
+.master-card{width:100%;height:100%;display:flex;gap:13px;text-align:left;align-items:center;padding:14px;background:none;border:0;color:inherit;cursor:pointer;font:inherit;transition:background .2s,transform .2s}
+.master-card:hover{background:var(--sun);transform:translateY(-2px)}
+.master-card:focus-visible,.profile-dialog__close:focus-visible{outline:3px solid #d84b4b;outline-offset:-3px}
+.master-card img{width:64px;height:64px;border:2px solid var(--ink);border-radius:50%;object-fit:cover;flex:none}
+.master-card__more{display:block;margin-top:8px;font-size:13px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.profile-dialog,.contact-dialog{margin:auto;padding:0;border:3px solid var(--ink);border-radius:28px;background:var(--paper);color:var(--ink);max-width:min(760px,calc(100% - 32px));max-height:calc(100% - 32px);box-shadow:8px 8px 0 var(--sun);overflow:auto}
+.profile-dialog::backdrop,.contact-dialog::backdrop{background:rgba(25,25,40,.72)}
+.profile-dialog__body{position:relative;display:grid;grid-template-columns: .85fr 1.15fr}
+.profile-dialog__photo{width:100%;height:100%;min-height:340px;object-fit:cover}
+.profile-dialog__content{padding:55px 36px 38px;align-self:center}
+.profile-dialog__role{font-weight:800;color:#a12b3e}
+.profile-dialog__content h2,.contact-dialog h2{font:800 clamp(28px,4vw,42px)/1.1 var(--f-d);margin:10px 0 16px}
+.profile-dialog__content p,.contact-dialog p{line-height:1.6;margin-bottom:20px}
+.profile-dialog__close{position:absolute;z-index:1;top:14px;right:14px;width:44px;height:44px;border:2px solid var(--ink);border-radius:50%;background:#fff;color:var(--ink);font-size:29px;line-height:1;cursor:pointer}
+.review-actions{text-align:center;margin-top:32px;color:white;font-weight:700}
+.review-actions__buttons,.faq__socials{display:flex;flex-wrap:wrap;gap:12px}
+.review-actions__buttons{justify-content:center;margin-top:18px}
+.review-actions__btn{background:var(--sun);color:var(--ink);border:2px solid var(--ink)}
+.review-actions__btn--pink{background:var(--pink-2)}
+.faq__socials{margin-top:26px}
+.faq__grid>div:first-child .faq__socials .btn{margin-top:0}
+.social-vk{background:var(--mist)}.social-max{background:var(--pink-2);cursor:pointer}
+.max-icon{display:inline-grid;place-items:center;width:25px;height:25px;border:2px solid currentColor;border-radius:9px;font:900 15px/1 var(--f-d)}
+.contact-dialog__body{position:relative;padding:42px;max-width:460px}
+.contact-dialog__phone{display:block;font-size:23px;font-weight:800;margin-bottom:22px}
+.copy-status{min-height:1.5em;margin:10px 0 0!important;font-size:14px}
+@media(max-width:560px){.profile-dialog__body{grid-template-columns:1fr}.profile-dialog__photo{height:190px;min-height:0}.profile-dialog__content{padding:25px}.contact-dialog__body{padding:34px 24px}.review-actions__buttons .btn{width:100%;justify-content:center}}
+
+/* Галерея в карточке мастера */
+.profile-dialog{max-width:min(980px,calc(100% - 32px))}
+.profile-dialog__body{grid-template-columns:1fr 1fr;min-height:520px}
+.profile-dialog__content{padding:60px 48px}
+.master-gallery{position:relative;min-width:0;min-height:520px;background:var(--sun)}
+.master-gallery__viewport{position:absolute;inset:0;overflow:hidden}
+.master-gallery__track{display:flex;width:100%;height:100%;transition:transform .4s ease}
+.master-gallery__track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover}
+.master-gallery__controls{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:14px;align-items:center;padding:6px;background:var(--paper);border:2px solid var(--ink);border-radius:99px;font-weight:800;white-space:nowrap}
+.master-gallery__controls button{width:40px;height:40px;border:2px solid var(--ink);border-radius:50%;background:var(--sun);font-size:27px;line-height:1;cursor:pointer}
+.master-gallery__controls button:hover{background:var(--pink-2)}
+.master-gallery__controls button:focus-visible{outline:3px solid #ba304b;outline-offset:2px}
+.social-max{background:#d9c5fa;color:#2f2150}
+.social-max img{width:25px;height:25px;object-fit:contain}
+.clist .contacts-social__links{display:flex;flex-direction:row;flex-wrap:wrap;gap:5px 14px;margin-top:5px}
+.contacts-social__links a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:560px){.profile-dialog__body{grid-template-columns:1fr;min-height:0}.master-gallery{min-height:240px;height:240px}.profile-dialog__content{padding:25px}.master-gallery__controls{bottom:10px}}
+@media(prefers-reduced-motion:reduce){.master-gallery__track{transition:none}}
+.ftr__bottom{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap;padding-top:20px;border-top:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
+.ftr__bottom a{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.ftr__bottom a:hover{color:var(--sun)}
+.ftr__bottom a:focus-visible{outline:2px solid var(--sun);outline-offset:4px}
