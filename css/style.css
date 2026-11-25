@@ -296,7 +296,7 @@ body.is-locked{overflow:hidden;touch-action:none}
 .prices__cta p{font-size:15.5px;color:var(--ink-2);max-width:40ch}
 .prices__cta a:not(.btn){font-weight:800;color:var(--ink);border-bottom:2px solid var(--red)}
 @media (max-width:820px){.panel{grid-template-columns:1fr}.plist__pic{max-height:300px;transform:none}}
-@media (max-width:420px){.plist dd{font-size:13px;padding:5px 9px}.plist dt{font-size:15.5px}.art dt small{display:block;margin:0}}
+@media (max-width:440px){.plist dd{font-size:13px;padding:5px 9px}.plist dt{font-size:15.5px}.art dt small{display:block;margin:0}}
 
 /* ---------- EARS ---------- */
 .ears{position:relative;padding:clamp(64px, 9vw, 120px) 0;background:var(--pink);overflow:hidden}
