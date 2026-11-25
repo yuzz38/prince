@@ -1,13 +1,21 @@
 {
-  "name": "Маленький принц — детская парикмахерская",
-  "short_name": "Маленький принц",
+  "name": "Маленький Принц и Роза",
+  "short_name": "Принц и Роза",
   "lang": "ru",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFF8EC",
   "theme_color": "#E5431D",
   "icons": [
-    {"src": "img/icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "img/icon-512.png", "sizes": "512x512", "type": "image/png"}
+    {
+      "src": "img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }

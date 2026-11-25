@@ -52,18 +52,14 @@
     });
   });
   [].forEach.call(d.querySelectorAll('[data-tab]:not(.tab)'), function (a) {
-    a.addEventListener('click', function () { openTab(a.getAttribute('data-tab')); });
+    a.addEventListener('click', function () {
+      d.getElementById('price-tab-south').click();
+      openTab(a.getAttribute('data-tab'));
+    });
   });
 
   /* ---------- gacha capsules ---------- */
-  var prizes = [
-    '🎓 Именной диплом о первой стрижке!',
-    '💌 Первый локон в конвертике на память',
-    '📸 Фото «до» — для семейного альбома',
-    '🧸 Игрушка из автомата — за смелость',
-    '✨ Улыбка мастера и хорошее настроение',
-    '💖 Грамота и фотосессия после прокола ушек'
-  ];
+  var prizes = ['Красивая стрижка', 'Хорошее настроение', 'Игрушка или сладкий подарок'];
   var out = d.getElementById('gachaOut'), bag = [];
   [].forEach.call(d.querySelectorAll('.cap'), function (c) {
     c.addEventListener('click', function () {
@@ -177,28 +173,66 @@
 
   /* ---------- year ---------- */
   var y = d.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
-  /* Окно мастера и галерея */
+  d.querySelectorAll('[data-branches]').forEach(function (group) {
+    var branchTabs = Array.from(group.querySelectorAll('.branch-tab'));
+    function selectBranch(index, focus) {
+      branchTabs.forEach(function (tab, i) {
+        var active = index === i;
+        tab.classList.toggle('is-on', active);
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        d.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
+      });
+      if (focus) branchTabs[index].focus();
+    }
+    branchTabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () { selectBranch(index); });
+      tab.addEventListener('keydown', function (event) {
+        var count = branchTabs.length;
+        var next = {ArrowLeft: (index + count - 1) % count, ArrowRight: (index + 1) % count, Home: 0, End: count - 1}[event.key];
+        if (next === undefined) return;
+        event.preventDefault();
+        selectBranch(next, true);
+      });
+    });
+  });
+
+  d.querySelectorAll('.branch-call, .social-menu').forEach(function (menu) {
+    d.addEventListener('click', function (event) {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
+    menu.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || !menu.open) return;
+      menu.open = false;
+      menu.querySelector('summary').focus();
+    });
+  });
+
   var masterDialog = d.getElementById('master-dialog');
+  var masterPhoto = d.getElementById('master-photo');
   var galleryTrack = d.getElementById('master-gallery-track');
+  var galleryControls = d.getElementById('master-controls');
   var galleryCounter = d.getElementById('master-counter');
-  var galleryIndex = 0;
-  var galleryTotal = galleryTrack.children.length;
+  var currentSlide = 0;
   function showMasterSlide(index) {
-    galleryIndex = (index + galleryTotal) % galleryTotal;
-    galleryTrack.style.transform = 'translateX(-' + (galleryIndex * 100) + '%)';
-    galleryCounter.textContent = (galleryIndex + 1) + ' / ' + galleryTotal;
+    currentSlide = (index + 2) % 2;
+    galleryTrack.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
+    galleryCounter.textContent = (currentSlide + 1) + ' / 2';
   }
-  d.querySelectorAll('.master-card').forEach(function (button) {
+  d.getElementById('master-prev').addEventListener('click', function () { showMasterSlide(currentSlide - 1); });
+  d.getElementById('master-next').addEventListener('click', function () { showMasterSlide(currentSlide + 1); });
+  d.querySelectorAll('button.master-card').forEach(function (button) {
     button.addEventListener('click', function () {
       d.getElementById('master-name').textContent = button.dataset.name;
       d.getElementById('master-role').textContent = button.dataset.role;
-      d.getElementById('master-book').href = button.dataset.book;
+      d.getElementById('master-address').textContent = button.dataset.address;
+      masterPhoto.src = button.dataset.photo;
+      masterPhoto.alt = button.dataset.name;
+      galleryControls.hidden = button.dataset.address !== 'ул. Капитанская, 14';
       showMasterSlide(0);
       masterDialog.showModal();
     });
   });
-  d.getElementById('master-prev').addEventListener('click', function () { showMasterSlide(galleryIndex - 1); });
-  d.getElementById('master-next').addEventListener('click', function () { showMasterSlide(galleryIndex + 1); });
   masterDialog.querySelector('.profile-dialog__close').addEventListener('click', function () { masterDialog.close(); });
   masterDialog.addEventListener('click', function (event) { if (event.target === masterDialog) masterDialog.close(); });
 })();
